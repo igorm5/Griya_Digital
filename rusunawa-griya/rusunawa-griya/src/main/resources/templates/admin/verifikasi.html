@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Pemesanan - Pengelola Asrama</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="mb-1">Verifikasi Pemesanan Kamar</h3>
+            <p class="text-muted mb-0">Rusunawa &amp; Griya Brawijaya — Panel Pengelola</p>
+        </div>
+        <span class="badge bg-secondary fs-6">Admin: admin_rusunawa</span>
+    </div>
+
+    <!-- Notifikasi Sukses / Error -->
+    <div th:if="${sukses}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${sukses}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Tabel Daftar Pemesanan Menunggu -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white fw-semibold">
+            Daftar Pemesanan Berstatus Menunggu
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Penyewa</th>
+                            <th>NIK KTP</th>
+                            <th>Kategori / Fakultas</th>
+                            <th>Kamar</th>
+                            <th>Tipe &amp; Periode Sewa</th>
+                            <th>Status</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${#lists.isEmpty(daftarPemesanan)}">
+                            <td colspan="8" class="text-center py-4 text-muted">
+                                Tidak ada pemesanan yang menunggu verifikasi saat ini.
+                            </td>
+                        </tr>
+                        <tr th:each="p, iter : ${daftarPemesanan}">
+                            <td th:text="${iter.count}">1</td>
+                            <td>
+                                <div class="fw-semibold" th:text="${p.penyewa.nama}">Nama Penyewa</div>
+                                <small class="text-muted" th:text="${p.penyewa.noTelepon}">0812xxx</small>
+                            </td>
+                            <td th:text="${p.penyewa.nikKtp}">3573xxxxxxxxxxxx</td>
+                            <td>
+                                <span th:text="${p.penyewa.kategoriPenyewa}">Mahasiswa</span>
+                                <div class="small text-muted"
+                                     th:text="${p.penyewa.fakultas != null ? p.penyewa.fakultas : '-'}">
+                                    FILKOM
+                                </div>
+                            </td>
+                            <td>
+                                <div class="fw-semibold" th:text="${p.kamar.nomorKamar}">RSN-101</div>
+                                <small class="text-muted" th:text="${p.kamar.gedung}">Rusunawa</small>
+                            </td>
+                            <td>
+                                <div th:text="${p.tipeSewa}">Tahunan</div>
+                                <small class="text-muted"
+                                       th:text="${p.tanggalMulai + ' s/d ' + p.tanggalSelesai}">
+                                    2026-08-01 s/d 2027-07-31
+                                </small>
+                            </td>
+                            <td>
+                                <span class="badge bg-warning text-dark" th:text="${p.statusPemesanan}">Menunggu</span>
+                                <span class="badge bg-danger" th:text="${p.statusPembayaran}">Belum Lunas</span>
+                            </td>
+                            <td class="text-center">
+                                <form th:action="@{/admin/verifikasi/{id}/setujui(id=${p.idPemesanan})}"
+                                      method="post"
+                                      onsubmit="return confirm('Verifikasi pemesanan ini dan konfirmasi pembayaran lunas?');">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        Verifikasi
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk & Daftar - Rusunawa & Griya UB</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-left">
+      <div class="auth-left-logo">R</div>
+      <div class="auth-hero-text">
+        <h1>Hunian kampus,<br>dipesan dalam menit.</h1>
+        <p>Rusunawa & Griya UB: pilih kamar, kirim pesanan, dan pantau verifikasi pembayaran dalam satu tempat.</p>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="auth-right">
+      <div class="auth-card">
+        <h2 style="font-size: 20px; font-weight: 700;">Selamat datang</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px; margin-bottom: 16px;">
+          Masuk untuk memesan kamar dan memantau pesanan.
+        </p>
+
+        <a href="katalog.html" class="btn btn-dark btn-block">Masuk via SSO UB</a>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; text-align: center;">
+          Khusus mahasiswa UB: Nama, NIM, fakultas, dan email terisi otomatis.
+        </p>
+
+        <div class="divider-text"><span>ATAU</span></div>
+
+        <div class="segmented-tabs">
+          <button type="button" class="segmented-tab" id="tab-masuk" onclick="switchAuthTab('masuk')">Masuk</button>
+          <button type="button" class="segmented-tab active" id="tab-daftar" onclick="switchAuthTab('daftar')">Daftar</button>
+        </div>
+
+        <form id="form-daftar" action="katalog.html">
+          <div class="form-group">
+            <label class="form-label">NIK / KTP (16 digit)</label>
+            <div class="input-with-meta">
+              <input type="text" maxlength="16" class="form-control" placeholder="Nomor KTP" oninput="document.getElementById('nik-count').textContent = this.value.length + '/16'">
+              <span class="input-meta-right" id="nik-count">0/16</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">No. telepon / WhatsApp</label>
+            <input type="tel" class="form-control" placeholder="Nomor aktif">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="nama@email.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Kata sandi</label>
+            <div class="input-with-meta">
+              <input type="password" id="reg-pass" class="form-control" placeholder="Minimal 8 karakter">
+              <button type="button" class="input-meta-right" onclick="togglePass('reg-pass', this)">Tampilkan</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Konfirmasi kata sandi</label>
+            <input type="password" class="form-control" placeholder="Ulangi kata sandi">
+          </div>
+
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-muted); margin-bottom: 16px; cursor: pointer;">
+            <input type="checkbox" required>
+            Saya setuju NIK dan No. telepon dipakai untuk verifikasi pemesanan.
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block">Daftar Akun Umum</button>
+        </form>
+
+        <form id="form-masuk" action="katalog.html" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="nama@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Kata sandi</label>
+            <input type="password" class="form-control" placeholder="Masukkan kata sandi" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchAuthTab(tab) {
+      const isDaftar = tab === 'daftar';
+      document.getElementById('form-daftar').style.display = isDaftar ? 'block' : 'none';
+      document.getElementById('form-masuk').style.display = isDaftar ? 'none' : 'block';
+      document.getElementById('tab-daftar').classList.toggle('active', isDaftar);
+      document.getElementById('tab-masuk').classList.toggle('active', !isDaftar);
+    }
+    function togglePass(id, btn) {
+      const input = document.getElementById(id);
+      const isPass = input.type === 'password';
+      input.type = isPass ? 'text' : 'password';
+      btn.textContent = isPass ? 'Sembunyikan' : 'Tampilkan';
+    }
+  </script>
+</body>
+</html>

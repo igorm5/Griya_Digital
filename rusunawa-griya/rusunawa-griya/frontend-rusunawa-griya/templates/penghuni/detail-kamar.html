@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kamar A-112 - Rusunawa & Griya UB</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="katalog.html" class="brand">
+        <span class="brand-logo">R</span>
+        <span>Rusunawa & Griya UB</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="katalog.html" class="nav-link active">Katalog</a>
+          <a href="pesanan-saya.html" class="nav-link">Pesanan Saya</a>
+          <a href="profil.html" class="nav-link">Profil</a>
+        </nav>
+        <a href="profil.html" class="avatar-circle">AR</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="katalog.html" class="back-link">&larr; Kamar A-112</a>
+
+    <div class="split-layout">
+      <div>
+        <div class="room-thumb-lg grad-blue-amber">
+          <span class="badge badge-yellow">Sisa 1 slot</span>
+        </div>
+
+        <h1 style="font-size: 22px; font-weight: 700;">Kamar A-112</h1>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Rusunawa UB · Kapasitas 2 · Lantai 1</p>
+        <a href="#" onclick="document.getElementById('restricted-modal').classList.add('open'); return false;" style="display: inline-block; font-size: 12px; font-weight: 600; color: var(--primary); margin-top: 4px;">
+          Lihat denah gedung
+        </a>
+
+        <div class="facility-tags">
+          <span class="tag-pill">AC / kipas</span>
+          <span class="tag-pill">Kasur</span>
+          <span class="tag-pill">Lemari</span>
+          <span class="tag-pill">Kamar mandi luar</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">Pilih tipe sewa</h3>
+
+        <label class="radio-box selected">
+          <input type="radio" name="tipe_sewa" checked style="margin-top: 3px; accent-color: var(--primary);">
+          <div>
+            <div style="font-weight: 600; font-size: 13px;">Berbagi</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Rp 4.000.000 / orang</div>
+          </div>
+        </label>
+
+        <label class="radio-box disabled">
+          <input type="radio" name="tipe_sewa" disabled style="margin-top: 3px;">
+          <div>
+            <div style="font-weight: 600; font-size: 13px; color: var(--text-muted);">Sendiri</div>
+            <div style="font-size: 11px; color: var(--text-muted);">Terkunci, kamar sudah terisi satu penghuni.</div>
+          </div>
+        </label>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 16px; margin: 18px 0;">
+          <span style="font-size: 13px; color: var(--text-muted);">Total</span>
+          <span style="font-size: 18px; font-weight: 700;">Rp 4.000.000</span>
+        </div>
+
+        <a href="form-pemesanan.html" class="btn btn-primary btn-block">Pesan Sekarang</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="restricted-modal">
+    <div class="modal-box" style="text-align: center; padding: 32px 24px;">
+      <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px; font-weight: 700;">
+        &#128274;
+      </div>
+      <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 8px;">Kamar asrama khusus mahasiswa</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">
+        Akun umum hanya dapat memesan Pengelolaan Umum. Mahasiswa UB masuk via SSO agar langsung terverifikasi.
+      </p>
+      <a href="login.html" class="btn btn-dark btn-block" style="margin-bottom: 10px;">Masuk via SSO UB</a>
+      <a href="verifikasi-mahasiswa.html" class="btn btn-outline btn-block" style="margin-bottom: 14px;">Ajukan Verifikasi Mahasiswa</a>
+      <a href="#" onclick="document.getElementById('restricted-modal').classList.remove('open'); return false;" style="font-size: 12px; font-weight: 600; color: var(--primary);">Lihat Pengelolaan Umum</a>
+    </div>
+  </div>
+</body>
+</html>

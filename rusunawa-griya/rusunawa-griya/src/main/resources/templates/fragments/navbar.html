@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+  <!-- Fragment Navbar Penghuni -->
+  <header th:fragment="navbar (activeTab)" class="navbar">
+    <div class="navbar-container">
+      <a th:href="@{/penghuni/katalog}" href="katalog.html" class="brand">
+        <span class="brand-logo">R</span>
+        <span>Rusunawa &amp; Griya UB</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a th:href="@{/penghuni/katalog}" href="katalog.html" 
+             class="nav-link" th:classappend="${activeTab == 'katalog'} ? ' active' : ''">Katalog</a>
+          <a th:href="@{/penghuni/pesanan-saya}" href="pesanan-saya.html" 
+             class="nav-link" th:classappend="${activeTab == 'pesanan'} ? ' active' : ''">Pesanan Saya</a>
+          <a th:href="@{/penghuni/profil}" href="profil.html" 
+             class="nav-link" th:classappend="${activeTab == 'profil'} ? ' active' : ''">Profil</a>
+        </nav>
+        <a th:href="@{/penghuni/profil}" href="profil.html" class="avatar-circle">AR</a>
+      </div>
+    </div>
+  </header>
+</body>
+</html>

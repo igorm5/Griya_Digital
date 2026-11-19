@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesanan Saya - Rusunawa &amp; Griya UB</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+</head>
+<body>
+  <header th:replace="~{fragments/navbar :: navbar('pesanan')}">
+    <div class="navbar-container">
+      <a href="katalog.html" class="brand">
+        <span class="brand-logo">R</span>
+        <span>Rusunawa &amp; Griya UB</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="katalog.html" class="nav-link">Katalog</a>
+          <a href="pesanan-saya.html" class="nav-link active">Pesanan Saya</a>
+          <a href="profil.html" class="nav-link">Profil</a>
+        </nav>
+        <a href="profil.html" class="avatar-circle">AR</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <h1 class="page-title">Pesanan Saya</h1>
+      <div style="display: flex; gap: 6px;">
+        <button type="button" class="chip active" id="btn-state-06" onclick="setOrderState('06')">06. Instruksi</button>
+        <button type="button" class="chip" id="btn-state-07" onclick="setOrderState('07')">07. Konfirmasi</button>
+        <button type="button" class="chip" id="btn-state-08" onclick="setOrderState('08')">08. Berhasil</button>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h2 style="font-size: 16px; font-weight: 700;">PSN-2027-0142</h2>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Kamar A-112 · Berbagi · 1 Agu 2027 – 31 Jul 2028</p>
+          </div>
+          <span id="order-status-badge" class="badge badge-yellow">Instruksi Pembayaran</span>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-icon done">&#10003;</div>
+            <div class="timeline-content">
+              <div style="font-weight: 600; font-size: 13px;">Pendaftaran dikirim</div>
+              <div style="font-size: 12px; color: var(--text-muted);">12 Nov 2026</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-icon done">&#10003;</div>
+            <div class="timeline-content">
+              <div style="font-weight: 600; font-size: 13px;">Verifikasi admin</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Data disetujui</div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div id="step3-icon" class="timeline-icon current">3</div>
+            <div class="timeline-content">
+              <div style="font-weight: 600; font-size: 13px;">Instruksi pembayaran</div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Transfer Rp 4.000.000 ke rekening pengelola.</div>
+
+              <div id="upload-action-06">
+                <label class="btn btn-primary" style="min-width: 210px;">
+                  Unggah Bukti Bayar
+                  <input type="file" accept="image/*,.pdf" style="display: none;" onchange="setOrderState('07')">
+                </label>
+              </div>
+
+              <div id="uploaded-file-view" style="display: none;">
+                <div class="file-uploaded-box">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 32px; height: 32px; background: var(--primary-light); border-radius: 6px;"></div>
+                    <div>
+                      <div style="font-weight: 600; font-size: 12px;">bukti_pembayaran.PNG</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">240 KB · Berhasil diunggah</div>
+                    </div>
+                  </div>
+                  <span style="width: 20px; height: 20px; border-radius: 50%; background: #15803D; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px;">&#10003;</span>
+                </div>
+                <label id="btn-ganti-file" class="btn btn-outline" style="padding: 7px 14px; font-size: 12px; margin-top: 4px;">
+                  Ganti File
+                  <input type="file" accept="image/*,.pdf" style="display: none;">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div id="step4-icon" class="timeline-icon pending">4</div>
+            <div class="timeline-content" style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 600; font-size: 13px;">Terverifikasi / Lunas</div>
+                <div id="step4-sub" style="font-size: 12px; color: var(--text-muted);">Menunggu pembayaran</div>
+              </div>
+              <a id="btn-detail-08" th:href="@{/penghuni/konfirmasi-pemesanan}" href="konfirmasi-pemesanan.html" class="btn btn-primary" style="display: none; padding: 8px 18px;">Detail</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px;">Instruksi pembayaran</h3>
+        <span style="font-size: 12px; color: var(--text-muted);">Total transfer</span>
+        <div style="font-size: 22px; font-weight: 700; color: var(--primary); margin-top: 2px;">Rp 4.000.000</div>
+
+        <div class="rekening-box">
+          <div>
+            <div style="font-weight: 700; font-size: 13px;">BNI · 1234 567 890</div>
+            <div style="font-size: 11px; color: var(--text-muted);">a.n. Pengelola Griya Brawijaya</div>
+          </div>
+          <button type="button" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px;" onclick="navigator.clipboard.writeText('1234567890'); this.textContent='Tersalin';">Salin</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function setOrderState(state) {
+      ['06', '07', '08'].forEach(s => document.getElementById('btn-state-' + s).classList.toggle('active', s === state));
+      const badge = document.getElementById('order-status-badge');
+      const s3 = document.getElementById('step3-icon');
+      const s4 = document.getElementById('step4-icon');
+      const s4Sub = document.getElementById('step4-sub');
+
+      document.getElementById('upload-action-06').style.display = state === '06' ? 'block' : 'none';
+      document.getElementById('uploaded-file-view').style.display = state !== '06' ? 'block' : 'none';
+      document.getElementById('btn-ganti-file').style.display = state === '07' ? 'inline-flex' : 'none';
+      document.getElementById('btn-detail-08').style.display = state === '08' ? 'inline-flex' : 'none';
+
+      if (state === '06') {
+        badge.className = 'badge badge-yellow';
+        badge.textContent = 'Instruksi Pembayaran';
+        s3.className = 'timeline-icon current'; s3.innerHTML = '3';
+        s4.className = 'timeline-icon pending'; s4.innerHTML = '4';
+        s4Sub.textContent = 'Menunggu pembayaran';
+      } else if (state === '07') {
+        badge.className = 'badge badge-blue';
+        badge.textContent = 'Menunggu Konfirmasi';
+        s3.className = 'timeline-icon done'; s3.innerHTML = '&#10003;';
+        s4.className = 'timeline-icon current'; s4.innerHTML = '4';
+        s4Sub.textContent = 'Menunggu konfirmasi dari pengelola.';
+      } else {
+        badge.className = 'badge badge-green';
+        badge.textContent = 'Berhasil';
+        s3.className = 'timeline-icon done'; s3.innerHTML = '&#10003;';
+        s4.className = 'timeline-icon done'; s4.innerHTML = '&#10003;';
+        s4Sub.textContent = 'Menunggu konfirmasi dari pengelola.';
+      }
+    }
+  </script>
+</body>
+</html>

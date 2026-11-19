@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pemesanan - Rusunawa &amp; Griya UB</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+</head>
+<body>
+  <header th:replace="~{fragments/navbar :: navbar('katalog')}">
+    <div class="navbar-container">
+      <a href="katalog.html" class="brand">
+        <span class="brand-logo">R</span>
+        <span>Rusunawa &amp; Griya UB</span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="katalog.html" class="nav-link active">Katalog</a>
+          <a href="pesanan-saya.html" class="nav-link">Pesanan Saya</a>
+          <a href="profil.html" class="nav-link">Profil</a>
+        </nav>
+        <a href="profil.html" class="avatar-circle">AR</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a th:href="@{/penghuni/detail-kamar}" href="detail-kamar.html" class="back-link">&larr; Form Pemesanan</a>
+
+    <div class="stepper-bar">
+      <div class="step-item done">
+        <div class="step-line"></div>
+        <span class="step-label">1. Data Diri</span>
+      </div>
+      <div class="step-item active">
+        <div class="step-line"></div>
+        <span class="step-label">2. Periode Sewa</span>
+      </div>
+      <div class="step-item">
+        <div class="step-line"></div>
+        <span class="step-label">3. Konfirmasi</span>
+      </div>
+    </div>
+
+    <div class="split-layout">
+      <form th:action="@{/penghuni/konfirmasi-pemesanan}" action="konfirmasi-pemesanan.html" class="card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px;">
+          <div>
+            <h2 style="font-size: 16px; font-weight: 700;">Data diri</h2>
+            <p style="font-size: 12px; color: var(--text-muted);">Aulia Rahmawati · NIM terisi dari SSO</p>
+          </div>
+          <span class="badge badge-green">Terkunci</span>
+        </div>
+
+        <div class="grid-2-col">
+          <div class="form-group">
+            <label class="form-label">Tanggal mulai</label>
+            <select class="form-control">
+              <option selected>1 Agu 2027</option>
+              <option>1 Sep 2027</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal selesai</label>
+            <select class="form-control">
+              <option selected>31 Jul 2028</option>
+              <option>31 Agu 2028</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 6px;">
+          <label class="form-label">Tipe sewa</label>
+          <label class="radio-box selected" style="margin-bottom: 0;">
+            <input type="radio" checked style="margin-top: 3px; accent-color: var(--primary);">
+            <div>
+              <div style="font-weight: 600; font-size: 13px;">Berbagi</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Rp 4.000.000 / orang</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="info-banner" style="margin-bottom: 0;">
+          Setelah dikirim, pesanan menunggu verifikasi pengelola.
+        </div>
+      </form>
+
+      <div class="card">
+        <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px;">Ringkasan</h3>
+
+        <div class="kv-row">
+          <span class="kv-label">Kamar</span>
+          <span class="kv-value">A-112 · Berbagi</span>
+        </div>
+        <div class="kv-row">
+          <span class="kv-label">Periode</span>
+          <span class="kv-value">1 Agu 2027 – 31 Jul 2028</span>
+        </div>
+        <div class="kv-row">
+          <span class="kv-label">Gedung</span>
+          <span class="kv-value">Rusunawa UB · Lantai 1</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 16px; margin: 16px 0;">
+          <span class="kv-label">Total</span>
+          <span style="font-size: 18px; font-weight: 700;">Rp 4.000.000</span>
+        </div>
+
+        <a th:href="@{/penghuni/konfirmasi-pemesanan}" href="konfirmasi-pemesanan.html" class="btn btn-primary btn-block">Submit &amp; Lanjut Pembayaran</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
